@@ -10,33 +10,35 @@ describe("App", () => {
     expect(location.pathname).toBe("/");
   });
 
-  it("should not render Friends link", () => {
-    renderWithRouter();
+  it("should not render navigation bar", async () => {
+    renderWithRouter("/signup");
 
-    expect(screen.queryByText("Friends")).not.toBeInTheDocument();
-    expect(location.pathname).toBe("/");
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByRole("link", { name: "Friends" }),
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByRole("link", { name: "Profile settings" }),
+    ).not.toBeInTheDocument();
+
+    expect(location.pathname).toBe("/signup");
   });
 
-  it("should not render Profile settings link", () => {
-    renderWithRouter();
-
-    expect(screen.queryByText("Profile settings")).not.toBeInTheDocument();
-    expect(location.pathname).toBe("/");
-  });
-
-  it("should go to the /login route if Login link clicked", async () => {
+  it("should go to the /login route if Log in link clicked", async () => {
     const { user } = renderWithRouter();
     expect(location.pathname).toBe("/");
 
-    await user.click(screen.getByText("Login"));
+    await user.click(screen.getByRole("link", { name: "Log in" }));
     expect(location.pathname).toBe("/login");
   });
 
-  it("should go to the /signup route if Signup link clicked", async () => {
+  it("should go to the /signup route if Sign up link clicked", async () => {
     const { user } = renderWithRouter();
     expect(location.pathname).toBe("/");
 
-    await user.click(screen.getByText("Signup"));
+    await user.click(screen.getByRole("link", { name: "Sign up" }));
     expect(location.pathname).toBe("/signup");
   });
 });
