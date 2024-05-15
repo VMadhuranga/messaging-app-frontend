@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const App = () => {
   const path = location.pathname;
@@ -21,13 +21,20 @@ const App = () => {
         )}
       </header>
       <main>
-        <p>
-          Please <Link to={"login"}>Login</Link> to see messages
-        </p>
-        <p>or</p>
-        <p>
-          <Link to={"signup"}>Signup</Link>if you don&apos;t have an account
-        </p>
+        {path === "/" ? (
+          <>
+            <p>
+              Please <Link to={"login"}>Log in</Link> to see messages
+            </p>
+            <p>or</p>
+            <p>
+              <Link to={"signup"}>Sign up</Link> if you don&apos;t have an
+              account
+            </p>
+          </>
+        ) : (
+          <Outlet />
+        )}
       </main>
       <footer>
         <p>VMadhuranga &copy; 2024</p>
