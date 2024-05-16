@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import renderWithRouter from "../../../tests/utils/render-with-router";
 
 describe("SignUpPage", () => {
-  it("should render successfully in /signup route", async () => {
+  it("should render successfully in /signup route", () => {
     renderWithRouter("/signup");
 
     expect(
@@ -12,7 +12,7 @@ describe("SignUpPage", () => {
     expect(location.pathname).toBe("/signup");
   });
 
-  it("should not render navigation bar", async () => {
+  it("should not render navigation bar", () => {
     renderWithRouter("/signup");
 
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
@@ -34,6 +34,5 @@ describe("SignUpPage", () => {
 
     await user.click(screen.getByRole("link", { name: "Log in" }));
     expect(location.pathname).toBe("/login");
-    screen.debug();
   });
 });
