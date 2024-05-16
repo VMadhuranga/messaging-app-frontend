@@ -1,13 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const App = () => {
-  const path = location.pathname;
+  const { pathname } = useLocation();
 
   return (
     <>
       <header>
         <h1>Messaging app</h1>
-        {!["/", "/login", "/signup"].includes(path) && (
+        {!["/", "/login", "/signup"].includes(pathname) && (
           <nav>
             <ul>
               <li>
@@ -21,14 +21,14 @@ const App = () => {
         )}
       </header>
       <main>
-        {path === "/" ? (
+        {pathname === "/" ? (
           <>
             <p>
-              Please <Link to={"login"}>Log in</Link> to see messages
+              Please <Link to={"/login"}>Log in</Link> to see messages
             </p>
             <p>or</p>
             <p>
-              <Link to={"signup"}>Sign up</Link> if you don&apos;t have an
+              <Link to={"/signup"}>Sign up</Link> if you don&apos;t have an
               account
             </p>
           </>
