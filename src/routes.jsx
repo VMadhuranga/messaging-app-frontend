@@ -1,6 +1,7 @@
 import { redirect } from "react-router-dom";
 import App from "./components/app/App";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
+import LoginPage from "./components/login-page/LoginPage";
 import signUpAction from "./actions/sign-up-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
@@ -11,7 +12,7 @@ const routes = [
     children: [
       {
         path: "/login",
-        element: <p>Login page</p>,
+        element: <LoginPage />,
       },
       {
         path: "/signup",
