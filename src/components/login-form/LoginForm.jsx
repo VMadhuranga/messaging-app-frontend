@@ -1,20 +1,30 @@
+import { Form, useActionData } from "react-router-dom";
+
 const LoginForm = () => {
+  const errors = useActionData();
+
   return (
-    <form>
+    <Form method="post" data-testid="login_form">
       <div>
         <label htmlFor="username">User name</label>
         <input type="text" id="username" name="username" required />
-        <span></span>
+        {errors &&
+          errors
+            .filter((error) => error.path === "username")
+            .map((error, index) => <span key={index}>{error.msg}</span>)}
       </div>
       <div>
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" required />
-        <span></span>
+        {errors &&
+          errors
+            .filter((error) => error.path === "password")
+            .map((error, index) => <span key={index}>{error.msg}</span>)}
       </div>
       <div>
         <button type="submit">Log in</button>
       </div>
-    </form>
+    </Form>
   );
 };
 
