@@ -7,7 +7,13 @@ const SignUpForm = () => {
     <Form method="post" data-testid="sign_up_form">
       <div>
         <label htmlFor="first_name">First name</label>
-        <input type="text" id="first_name" name="first_name" required />
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          required
+          data-testid="first_name"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "first_name")
@@ -15,7 +21,13 @@ const SignUpForm = () => {
       </div>
       <div>
         <label htmlFor="last_name">Last name</label>
-        <input type="text" id="last_name" name="last_name" required />
+        <input
+          type="text"
+          id="last_name"
+          name="last_name"
+          required
+          data-testid="last_name"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "last_name")
@@ -23,7 +35,13 @@ const SignUpForm = () => {
       </div>
       <div>
         <label htmlFor="username">User name</label>
-        <input type="text" id="username" name="username" required />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          data-testid="username"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "username")
@@ -31,7 +49,13 @@ const SignUpForm = () => {
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" required />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          data-testid="password"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "password")
@@ -44,6 +68,7 @@ const SignUpForm = () => {
           id="confirm_password"
           name="confirm_password"
           required
+          data-testid="confirm_password"
         />
         {errors &&
           errors
