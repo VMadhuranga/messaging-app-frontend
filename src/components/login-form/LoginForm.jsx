@@ -7,7 +7,13 @@ const LoginForm = () => {
     <Form method="post" data-testid="login_form">
       <div>
         <label htmlFor="username">User name</label>
-        <input type="text" id="username" name="username" required />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          data-testid="username"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "username")
@@ -15,7 +21,13 @@ const LoginForm = () => {
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" required />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          data-testid="password"
+        />
         {errors &&
           errors
             .filter((error) => error.path === "password")
