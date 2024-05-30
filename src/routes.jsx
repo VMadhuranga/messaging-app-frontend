@@ -1,12 +1,15 @@
-import { redirect } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./components/app/App";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
 import LoginPage from "./components/login-page/LoginPage";
 import signUpAction from "./actions/sign-up-action";
 import loginAction from "./actions/login-action";
+import FriendListPage from "./components/friend-list-page/FriendListPage";
+import friendListLoader from "./loaders/friend-list-loader";
+import refreshAction from "./actions/refresh-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
-const routes = [
+const routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -47,10 +50,24 @@ const routes = [
       },
       {
         path: "/:user_id/friends",
-        element: <p>Friends</p>,
+        element: <FriendListPage />,
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          const friends = await friendListLoader(baseUrl, params.user_id);
+
+          return friends;
+        },
+      },
+      {
+        path: "/:user_id/friends/:friend_id/messages",
+        element: <h2>Friend page</h2>,
+      },
+      {
+        path: "/:user_id/people",
+        element: <h2>Browse people page</h2>,
       },
     ],
   },
-];
+]);
 
 export default routes;
