@@ -5,10 +5,10 @@ const FriendListPage = () => {
   const { user_id } = useParams();
 
   return (
-    <section data-testid="friend_list_page">
+    <section>
       <h2>Friends</h2>
       {friends.length > 0 ? (
-        <ul data-testid="friend_list">
+        <ul>
           {friends.map(({ friend }) => (
             <li key={friend._id}>
               <Link

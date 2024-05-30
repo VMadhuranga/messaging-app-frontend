@@ -4,16 +4,10 @@ const LoginForm = () => {
   const errors = useActionData();
 
   return (
-    <Form method="post" data-testid="login_form">
+    <Form method="post">
       <div>
         <label htmlFor="username">User name</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          data-testid="username"
-        />
+        <input type="text" id="username" name="username" required />
         {errors &&
           errors
             .filter((error) => error.path === "username")
@@ -21,13 +15,7 @@ const LoginForm = () => {
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          data-testid="password"
-        />
+        <input type="password" id="password" name="password" required />
         {errors &&
           errors
             .filter((error) => error.path === "password")
