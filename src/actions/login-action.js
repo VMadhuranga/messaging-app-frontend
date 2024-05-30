@@ -6,7 +6,9 @@ export default async function loginAction(baseUrl, formData) {
       withCredentials: true,
     });
 
-    const { userId } = response.data;
+    const { userId, accessToken } = response.data;
+
+    sessionStorage.setItem("accessToken", accessToken);
 
     return { userId };
   } catch (error) {
