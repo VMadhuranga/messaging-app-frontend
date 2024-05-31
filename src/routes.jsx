@@ -7,12 +7,14 @@ import loginAction from "./actions/login-action";
 import FriendListPage from "./components/friend-list-page/FriendListPage";
 import friendListLoader from "./loaders/friend-list-loader";
 import refreshAction from "./actions/refresh-action";
+import ErrorPage from "./components/error-page/ErrorPage";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
