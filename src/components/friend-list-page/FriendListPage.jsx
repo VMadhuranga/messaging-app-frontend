@@ -12,7 +12,7 @@ const FriendListPage = () => {
           {friends.map(({ friend }) => (
             <li key={friend._id}>
               <Link
-                to={`${friend._id}`}
+                to={`${friend._id}/messages`}
               >{`${friend.firstName} ${friend.lastName}`}</Link>
               <span>{friend.userName}</span>
             </li>
