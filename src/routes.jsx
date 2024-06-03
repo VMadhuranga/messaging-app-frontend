@@ -1,13 +1,15 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./components/app/App";
+import ErrorPage from "./components/error-page/ErrorPage";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
 import LoginPage from "./components/login-page/LoginPage";
 import signUpAction from "./actions/sign-up-action";
 import loginAction from "./actions/login-action";
 import FriendListPage from "./components/friend-list-page/FriendListPage";
+import ChatPage from "./components/chat-page/ChatPage";
 import friendListLoader from "./loaders/friend-list-loader";
 import refreshAction from "./actions/refresh-action";
-import ErrorPage from "./components/error-page/ErrorPage";
+import messagesLoader from "./loaders/messages-loader";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -62,7 +64,17 @@ const routes = createBrowserRouter([
       },
       {
         path: "/:user_id/friends/:friend_id/messages",
-        element: <h2>Friend page</h2>,
+        element: <ChatPage />,
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          const messages = await messagesLoader(
+            baseUrl,
+            params.user_id,
+            params.friend_id,
+          );
+
+          return messages;
+        },
       },
       {
         path: "/:user_id/people",
