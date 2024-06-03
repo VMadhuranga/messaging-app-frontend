@@ -1,7 +1,8 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
 const App = () => {
   const { pathname } = useLocation();
+  const param = useParams();
 
   return (
     <>
@@ -10,9 +11,11 @@ const App = () => {
         {!["/", "/login", "/signup"].includes(pathname) && (
           <nav>
             <ul>
-              <li>
-                <Link to={""}>Friends</Link>
-              </li>
+              {![`/${param.user_id}/friends`].includes(pathname) && (
+                <li>
+                  <Link to={`/${param.user_id}/friends`}>Friends</Link>
+                </li>
+              )}
               <li>
                 <Link to={""}>Profile settings</Link>
               </li>
