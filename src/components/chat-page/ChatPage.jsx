@@ -1,16 +1,17 @@
-import { useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useParams } from "react-router-dom";
 
 const ChatPage = () => {
   const messages = useLoaderData();
+  const params = useParams();
 
   return (
     <section>
       <div>
         <h2>Friend name</h2>
-        <form>
-          <input type="hidden" name="" />
+        <Form method="delete">
+          <input type="hidden" value={params.friend_id} />
           <button type="submit">Delete friend</button>
-        </form>
+        </Form>
       </div>
       {messages.length > 0 ? (
         <ul>
