@@ -13,6 +13,7 @@ const FriendListPage = () => {
             <li key={friend._id}>
               <Link
                 to={`${friend._id}/messages`}
+                state={{ friendName: `${friend.firstName} ${friend.lastName}` }}
               >{`${friend.firstName} ${friend.lastName}`}</Link>
               <span>{friend.userName}</span>
             </li>
