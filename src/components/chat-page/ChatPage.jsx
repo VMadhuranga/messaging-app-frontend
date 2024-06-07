@@ -1,9 +1,18 @@
-import { Form, useLoaderData, useLocation, useParams } from "react-router-dom";
+import { useState } from "react";
+import {
+  Form,
+  useFetcher,
+  useLoaderData,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 
 const ChatPage = () => {
   const messages = useLoaderData();
   const params = useParams();
   const location = useLocation();
+  const fetcher = useFetcher();
+  const [message, setMessage] = useState("");
 
   return (
     <section>
@@ -16,17 +25,30 @@ const ChatPage = () => {
       </div>
       {messages.length > 0 ? (
         <ul>
-          {messages.map((message) => (
-            <li key={message._id}>{message.content}</li>
-          ))}
+          {messages
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((message) => (
+              <li key={message._id}>{message.content}</li>
+            ))}
         </ul>
       ) : (
         <p>There are no messages yet</p>
       )}
-      <form>
-        <textarea name="" id=""></textarea>
+      <fetcher.Form
+        method="post"
+        onSubmit={() => {
+          setMessage("");
+        }}
+      >
+        <textarea
+          name="message"
+          value={message}
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+        ></textarea>
         <button type="submit">Send message</button>
-      </form>
+      </fetcher.Form>
     </section>
   );
 };
