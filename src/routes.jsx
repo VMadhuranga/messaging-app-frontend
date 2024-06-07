@@ -11,6 +11,7 @@ import friendListLoader from "./loaders/friend-list-loader";
 import refreshAction from "./actions/refresh-action";
 import messagesLoader from "./loaders/messages-loader";
 import deleteFriendAction from "./actions/delete-friend-action";
+import sendMessageAction from "./actions/send-message-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -77,9 +78,25 @@ const routes = createBrowserRouter([
           return messages;
         },
         action: async ({ request, params }) => {
+          await refreshAction(baseUrl);
           if (request.method === "DELETE") {
             await deleteFriendAction(baseUrl, params.user_id, params.friend_id);
             return redirect(`/${params.user_id}/friends`);
+          }
+
+          if (request.method === "POST") {
+            const formData = Object.fromEntries(
+              (await request.formData()).entries(),
+            );
+
+            await sendMessageAction(
+              baseUrl,
+              params.user_id,
+              params.friend_id,
+              formData,
+            );
+
+            return null;
           }
         },
       },
