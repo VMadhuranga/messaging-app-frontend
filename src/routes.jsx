@@ -7,11 +7,13 @@ import signUpAction from "./actions/sign-up-action";
 import loginAction from "./actions/login-action";
 import FriendListPage from "./components/friend-list-page/FriendListPage";
 import ChatPage from "./components/chat-page/ChatPage";
+import BrowsePeoplePage from "./components/browse-people-page/BrowsePeoplePage";
 import friendListLoader from "./loaders/friend-list-loader";
 import refreshAction from "./actions/refresh-action";
 import messagesLoader from "./loaders/messages-loader";
 import deleteFriendAction from "./actions/delete-friend-action";
 import sendMessageAction from "./actions/send-message-action";
+import peopleLoader from "./loaders/people-loader";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -102,7 +104,12 @@ const routes = createBrowserRouter([
       },
       {
         path: "/:user_id/people",
-        element: <h2>Browse people page</h2>,
+        element: <BrowsePeoplePage />,
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          const people = await peopleLoader(baseUrl, params.user_id);
+          return people;
+        },
       },
     ],
   },
