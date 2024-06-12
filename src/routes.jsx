@@ -14,6 +14,7 @@ import messagesLoader from "./loaders/messages-loader";
 import deleteFriendAction from "./actions/delete-friend-action";
 import sendMessageAction from "./actions/send-message-action";
 import peopleLoader from "./loaders/people-loader";
+import addFriendAction from "./actions/add-friend-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -109,6 +110,14 @@ const routes = createBrowserRouter([
           await refreshAction(baseUrl);
           const people = await peopleLoader(baseUrl, params.user_id);
           return people;
+        },
+        action: async ({ request, params }) => {
+          await refreshAction(baseUrl);
+          const formData = Object.fromEntries(
+            (await request.formData()).entries(),
+          );
+          await addFriendAction(baseUrl, params.user_id, formData);
+          return null;
         },
       },
     ],
