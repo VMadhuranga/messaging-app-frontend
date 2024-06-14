@@ -16,9 +16,11 @@ const App = () => {
                   <Link to={`/${param.user_id}/friends`}>Friends</Link>
                 </li>
               )}
-              <li>
-                <Link to={""}>Profile settings</Link>
-              </li>
+              {![`/${param.user_id}/profile`].includes(pathname) && (
+                <li>
+                  <Link to={`/${param.user_id}/profile`}>Profile settings</Link>
+                </li>
+              )}
             </ul>
           </nav>
         )}
