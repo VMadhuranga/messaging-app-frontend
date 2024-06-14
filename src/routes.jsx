@@ -15,6 +15,7 @@ import deleteFriendAction from "./actions/delete-friend-action";
 import sendMessageAction from "./actions/send-message-action";
 import peopleLoader from "./loaders/people-loader";
 import addFriendAction from "./actions/add-friend-action";
+import ProfilePage from "./components/profile-page/ProfilePage";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -56,6 +57,10 @@ const routes = createBrowserRouter([
 
           return redirect("/login");
         },
+      },
+      {
+        path: "/:user_id/profile",
+        element: <ProfilePage />,
       },
       {
         path: "/:user_id/friends",
