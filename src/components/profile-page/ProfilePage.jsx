@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProfilePage = () => {
   return (
     <section>
@@ -8,10 +10,9 @@ const ProfilePage = () => {
       <div>
         <a>Delete profile</a>
       </div>
-      <form>
-        <input type="hidden" />
-        <button type="submit">Logout</button>
-      </form>
+      <div>
+        <Link to={"/logout"}>Logout</Link>
+      </div>
     </section>
   );
 };
