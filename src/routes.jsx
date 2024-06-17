@@ -16,6 +16,7 @@ import sendMessageAction from "./actions/send-message-action";
 import peopleLoader from "./loaders/people-loader";
 import addFriendAction from "./actions/add-friend-action";
 import ProfilePage from "./components/profile-page/ProfilePage";
+import logoutAction from "./loaders/logout-loader";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -39,6 +40,13 @@ const routes = createBrowserRouter([
           }
 
           return redirect(`/${userId}/friends`);
+        },
+      },
+      {
+        path: "/logout",
+        loader: async () => {
+          await logoutAction(baseUrl);
+          return redirect("/login");
         },
       },
       {
