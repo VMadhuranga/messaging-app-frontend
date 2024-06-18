@@ -17,6 +17,7 @@ import peopleLoader from "./loaders/people-loader";
 import addFriendAction from "./actions/add-friend-action";
 import ProfilePage from "./components/profile-page/ProfilePage";
 import logoutAction from "./loaders/logout-loader";
+import deleteProfileLoader from "./loaders/delete-profile-loader";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -69,6 +70,14 @@ const routes = createBrowserRouter([
       {
         path: "/:user_id/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/:user_id/profile/delete",
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          await deleteProfileLoader(baseUrl, params.user_id);
+          return redirect("/");
+        },
       },
       {
         path: "/:user_id/friends",
