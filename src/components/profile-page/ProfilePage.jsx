@@ -13,7 +13,7 @@ const ProfilePage = () => {
     <section>
       <h2>User&apos;s name</h2>
       <div>
-        <a>Edit profile</a>
+        <Link to={`/${params.user_id}/profile/edit`}>Edit profile</Link>
       </div>
       <div>
         <Link to={`/${params.user_id}/profile/delete`} onClick={deleteProfile}>
