@@ -19,6 +19,7 @@ import ProfilePage from "./components/profile-page/ProfilePage";
 import logoutAction from "./loaders/logout-loader";
 import deleteProfileLoader from "./loaders/delete-profile-loader";
 import EditProfilePage from "./components/edit-profile-page/EditProfilePage";
+import getUserLoader from "./loaders/user-loader";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -83,6 +84,12 @@ const routes = createBrowserRouter([
       {
         path: "/:user_id/profile/edit",
         element: <EditProfilePage />,
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          const user = await getUserLoader(baseUrl, params.user_id);
+
+          return user;
+        },
       },
       {
         path: "/:user_id/friends",
