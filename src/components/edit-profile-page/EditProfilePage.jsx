@@ -1,11 +1,21 @@
+import { useLoaderData } from "react-router-dom";
+
 const EditProfilePage = () => {
+  const user = useLoaderData();
+
   return (
     <section>
       <h2>Edit profile</h2>
       <form>
         <div>
           <label htmlFor="first_name">First name</label>
-          <input type="text" id="first_name" name="first_name" required />
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            required
+            defaultValue={user.firstName}
+          />
         </div>
         <div>
           <button type="submit">Update first name</button>
@@ -15,7 +25,13 @@ const EditProfilePage = () => {
       <form>
         <div>
           <label htmlFor="last_name">Last name</label>
-          <input type="text" id="last_name" name="last_name" required />
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            required
+            defaultValue={user.lastName}
+          />
         </div>
         <div>
           <button type="submit">Update last name</button>
@@ -25,7 +41,13 @@ const EditProfilePage = () => {
       <form>
         <div>
           <label htmlFor="username">User name</label>
-          <input type="text" id="username" name="username" required />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            defaultValue={user.userName}
+          />
         </div>
         <div>
           <button type="submit">Update user name</button>
