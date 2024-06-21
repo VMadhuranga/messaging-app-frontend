@@ -20,6 +20,7 @@ import logoutAction from "./loaders/logout-loader";
 import deleteProfileLoader from "./loaders/delete-profile-loader";
 import EditProfilePage from "./components/edit-profile-page/EditProfilePage";
 import getUserLoader from "./loaders/user-loader";
+import updateFirstNameAction from "./actions/update-first-name-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -89,6 +90,26 @@ const routes = createBrowserRouter([
           const user = await getUserLoader(baseUrl, params.user_id);
 
           return user;
+        },
+        action: async ({ request, params }) => {
+          await refreshAction(baseUrl);
+          const formData = Object.fromEntries(
+            (await request.formData()).entries(),
+          );
+
+          if (Object.hasOwn(formData, "first_name")) {
+            const errorData = await updateFirstNameAction(
+              baseUrl,
+              params.user_id,
+              formData,
+            );
+
+            if (errorData) {
+              return errorData;
+            }
+          }
+
+          return null;
         },
       },
       {
