@@ -1,26 +1,30 @@
-import { useLoaderData } from "react-router-dom";
+import { Form, useActionData, useLoaderData } from "react-router-dom";
 
 const EditProfilePage = () => {
   const user = useLoaderData();
+  const errors = useActionData();
 
   return (
     <section>
       <h2>Edit profile</h2>
-      <form>
+      <Form method="patch">
         <div>
           <label htmlFor="first_name">First name</label>
           <input
             type="text"
             id="first_name"
             name="first_name"
-            required
             defaultValue={user.firstName}
           />
+          {errors &&
+            errors
+              .filter((error) => error.path === "first_name")
+              .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <button type="submit">Update first name</button>
         </div>
-      </form>
+      </Form>
       <hr />
       <form>
         <div>
