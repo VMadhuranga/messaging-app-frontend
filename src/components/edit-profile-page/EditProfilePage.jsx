@@ -47,7 +47,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <form>
+      <Form method="patch">
         <div>
           <label htmlFor="username">User name</label>
           <input
@@ -57,11 +57,15 @@ const EditProfilePage = () => {
             required
             defaultValue={user.userName}
           />
+          {errors &&
+            errors
+              .filter((error) => error.path === "username")
+              .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <button type="submit">Update user name</button>
         </div>
-      </form>
+      </Form>
       <hr />
       <form>
         <div>
