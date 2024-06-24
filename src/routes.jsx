@@ -22,6 +22,7 @@ import EditProfilePage from "./components/edit-profile-page/EditProfilePage";
 import getUserLoader from "./loaders/user-loader";
 import updateFirstNameAction from "./actions/update-first-name-action";
 import updateLastNameAction from "./actions/update-last-name-action";
+import updateUserNameAction from "./actions/update-username-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -112,6 +113,18 @@ const routes = createBrowserRouter([
 
           if (Object.hasOwn(formData, "last_name")) {
             const errorData = await updateLastNameAction(
+              baseUrl,
+              params.user_id,
+              formData,
+            );
+
+            if (errorData) {
+              return errorData;
+            }
+          }
+
+          if (Object.hasOwn(formData, "username")) {
+            const errorData = await updateUserNameAction(
               baseUrl,
               params.user_id,
               formData,
