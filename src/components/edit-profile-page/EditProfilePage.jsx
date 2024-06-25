@@ -67,7 +67,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <form>
+      <Form method="patch">
         <div>
           <label htmlFor="old_password">Old password</label>
           <input
@@ -76,6 +76,10 @@ const EditProfilePage = () => {
             name="old_password"
             required
           />
+          {errors &&
+            errors
+              .filter((error) => error.path === "old_password")
+              .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <label htmlFor="new_password">New password</label>
@@ -85,6 +89,10 @@ const EditProfilePage = () => {
             name="new_password"
             required
           />
+          {errors &&
+            errors
+              .filter((error) => error.path === "new_password")
+              .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <label htmlFor="confirm_new_password">Confirm new password</label>
@@ -94,11 +102,15 @@ const EditProfilePage = () => {
             name="confirm_new_password"
             required
           />
+          {errors &&
+            errors
+              .filter((error) => error.path === "confirm_new_password")
+              .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <button type="submit">Update password</button>
         </div>
-      </form>
+      </Form>
     </section>
   );
 };
