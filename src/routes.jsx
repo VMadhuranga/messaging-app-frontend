@@ -23,6 +23,7 @@ import getUserLoader from "./loaders/user-loader";
 import updateFirstNameAction from "./actions/update-first-name-action";
 import updateLastNameAction from "./actions/update-last-name-action";
 import updateUserNameAction from "./actions/update-username-action";
+import updatePasswordAction from "./actions/update-password-action";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 const routes = createBrowserRouter([
@@ -125,6 +126,22 @@ const routes = createBrowserRouter([
 
           if (Object.hasOwn(formData, "username")) {
             const errorData = await updateUserNameAction(
+              baseUrl,
+              params.user_id,
+              formData,
+            );
+
+            if (errorData) {
+              return errorData;
+            }
+          }
+
+          if (
+            Object.hasOwn(formData, "old_password") &&
+            Object.hasOwn(formData, "new_password") &&
+            Object.hasOwn(formData, "confirm_new_password")
+          ) {
+            const errorData = await updatePasswordAction(
               baseUrl,
               params.user_id,
               formData,
