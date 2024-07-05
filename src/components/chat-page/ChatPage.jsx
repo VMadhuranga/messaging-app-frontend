@@ -19,6 +19,12 @@ const ChatPage = () => {
   const fetcher = useFetcher();
   const [message, setMessage] = useState("");
 
+  function deleteFriend(e) {
+    if (!confirm("Do you really want to delete the friend")) {
+      e.preventDefault();
+    }
+  }
+
   return (
     <section className={`defaultSection ${styles.chatPage}`}>
       <div>
@@ -26,7 +32,11 @@ const ChatPage = () => {
           <img src={goBackSvg} alt="Go back" title="Go back" />
         </Link>
         <h2>{location.state.friendName}</h2>
-        <Form method="delete" className={styles.deleteFriendForm}>
+        <Form
+          method="delete"
+          className={styles.deleteFriendForm}
+          onSubmit={deleteFriend}
+        >
           <input type="hidden" value={params.friend_id} />
           <button type="submit">
             <img
