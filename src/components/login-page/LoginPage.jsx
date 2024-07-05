@@ -3,7 +3,7 @@ import LoginForm from "../login-form/LoginForm";
 
 const LoginPage = () => {
   return (
-    <section>
+    <section className="defaultSection">
       <h2>Log in</h2>
       <LoginForm />
       <p>
