@@ -1,13 +1,32 @@
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useActionData,
+  useLoaderData,
+  useParams,
+} from "react-router-dom";
+import goBackSvg from "../../assets/icons/go-back.svg";
+import styles from "./EditProfilePage.module.css";
 
 const EditProfilePage = () => {
   const user = useLoaderData();
   const errors = useActionData();
+  const params = useParams();
 
   return (
-    <section>
-      <h2>Edit profile</h2>
-      <Form method="patch">
+    <section className={`defaultSection ${styles.editProfilePage}`}>
+      <div>
+        <Link to={`/${params.user_id}/profile`} className="goBackBtn">
+          <img
+            src={goBackSvg}
+            alt="Go back"
+            title="Go back"
+            className="goBackBtn"
+          />
+        </Link>
+        <h2>Edit profile</h2>
+      </div>
+      <Form method="patch" className="defaultForm">
         <div>
           <label htmlFor="first_name">First name</label>
           <input
@@ -27,7 +46,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <Form method="patch">
+      <Form method="patch" className="defaultForm">
         <div>
           <label htmlFor="last_name">Last name</label>
           <input
@@ -47,7 +66,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <Form method="patch">
+      <Form method="patch" className="defaultForm">
         <div>
           <label htmlFor="username">User name</label>
           <input
@@ -67,7 +86,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <Form method="patch">
+      <Form method="patch" className="defaultForm">
         <div>
           <label htmlFor="old_password">Old password</label>
           <input

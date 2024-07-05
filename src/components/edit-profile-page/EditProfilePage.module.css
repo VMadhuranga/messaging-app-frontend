@@ -1,0 +1,26 @@
+.editProfilePage > div {
+  display: flex;
+  align-items: center;
+  gap: var(--default-gap);
+}
+
+.editProfilePage form button {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #f3f4f6;
+  padding: 3px 5px;
+  border: 1px solid #6b7280;
+  border-radius: 3px;
+}
+
+.editProfilePage form {
+  flex-direction: column;
+}
+
+.editProfilePage form button:hover {
+  background-color: #e5e7eb;
+}
+
+.editProfilePage form button:focus {
+  background-color: #f3f4f6;
+}
