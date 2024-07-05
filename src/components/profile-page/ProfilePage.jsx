@@ -10,7 +10,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <section>
+    <section className="defaultSection">
       <h2>User&apos;s name</h2>
       <div>
         <Link to={`/${params.user_id}/profile/edit`}>Edit profile</Link>
