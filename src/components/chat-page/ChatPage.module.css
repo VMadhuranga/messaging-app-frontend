@@ -1,0 +1,77 @@
+.chatPage div {
+  display: flex;
+  align-items: center;
+  gap: var(--default-gap);
+}
+
+.chatPage div h2 {
+  margin-right: auto;
+}
+
+.chatPage ul {
+  height: 375px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--default-gap);
+  background-color: white;
+  padding: var(--default-padding);
+  border: 1px solid #7dd3fc;
+  border-radius: 3px;
+  overflow: auto;
+  scrollbar-width: thin;
+  word-break: break-all;
+}
+
+.chatPage ul:has(p) {
+  justify-content: center;
+}
+
+.sendMessageForm textarea {
+  flex: 1;
+  resize: none;
+}
+
+.deleteFriendForm button,
+.sendMessageForm button {
+  background: none;
+  border: none;
+}
+
+.deleteFriendForm button img {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  &:hover {
+    filter: invert(27%) sepia(76%) saturate(1954%) hue-rotate(341deg)
+      brightness(88%) contrast(103%);
+  }
+}
+
+.sendMessageForm button img {
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    filter: invert(27%) sepia(83%) saturate(5668%) hue-rotate(225deg)
+      brightness(88%) contrast(92%);
+  }
+}
+
+.userMsg,
+.friendMsg {
+  max-width: fit-content;
+  padding: var(--default-padding);
+  border-radius: 3px;
+}
+
+.userMsg {
+  background-color: #bbf7d0;
+  margin-left: auto;
+}
+
+.friendMsg {
+  background-color: #fecaca;
+  margin-right: auto;
+}
