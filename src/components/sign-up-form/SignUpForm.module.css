@@ -1,0 +1,44 @@
+.signUpForm {
+  flex-direction: column;
+}
+
+/* .signUpForm div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+} */
+
+/* .signUpForm input {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: white;
+  padding: 3px 5px;
+  border: 1px solid #4b5563;
+  border-radius: 2px;
+} */
+
+/* .signUpForm input:hover {
+  border: 1px solid black;
+} */
+
+/* .signUpForm input:focus {
+  outline: 1px solid black;
+  outline-offset: -2px;
+} */
+
+.signUpForm button {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #f3f4f6;
+  padding: 3px 5px;
+  border: 1px solid #6b7280;
+  border-radius: 3px;
+}
+
+.signUpForm button:hover {
+  background-color: #e5e7eb;
+}
+
+.signUpForm button:focus {
+  background-color: #f3f4f6;
+}

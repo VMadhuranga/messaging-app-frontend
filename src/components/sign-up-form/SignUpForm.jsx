@@ -1,10 +1,11 @@
 import { Form, useActionData } from "react-router-dom";
+import styles from "./SignUpForm.module.css";
 
 const SignUpForm = () => {
   const errors = useActionData();
 
   return (
-    <Form method="post">
+    <Form method="post" className={`defaultForm ${styles.signUpForm}`}>
       <div>
         <label htmlFor="first_name">First name</label>
         <input type="text" id="first_name" name="first_name" required />
