@@ -1,11 +1,11 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import styles from "./FriendListPage.module.css";
 
 const FriendListPage = () => {
   const friends = useLoaderData();
-  const { user_id } = useParams();
 
   return (
-    <section>
+    <section className={`defaultSection ${styles.friendListPage}`}>
       <h2>Friends</h2>
       {friends.length > 0 ? (
         <ul>
@@ -15,16 +15,13 @@ const FriendListPage = () => {
                 to={`${friend._id}/messages`}
                 state={{ friendName: `${friend.firstName} ${friend.lastName}` }}
               >{`${friend.firstName} ${friend.lastName}`}</Link>
-              <span>{friend.userName}</span>
+              <span>@{friend.userName}</span>
             </li>
           ))}
         </ul>
       ) : (
         <p>There are no friends yet</p>
       )}
-      <p>
-        <Link to={`/${user_id}/people`}>Browse people</Link>
-      </p>
     </section>
   );
 };

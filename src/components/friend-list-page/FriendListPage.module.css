@@ -1,0 +1,10 @@
+.friendListPage ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-gap);
+}
+
+.friendListPage ul li {
+  display: flex;
+  flex-direction: column;
+}
