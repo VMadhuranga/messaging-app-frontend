@@ -3,7 +3,7 @@ import SignUpForm from "../sign-up-form/SignUpForm";
 
 const SignUpPage = () => {
   return (
-    <section>
+    <section className="defaultSection">
       <h2>Sign up</h2>
       <SignUpForm />
       <p>
