@@ -1,0 +1,50 @@
+.loginForm {
+  /* display: flex; */
+  flex-direction: column;
+  /* gap: var(--default-gap); */
+}
+
+/* .loginForm div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+} */
+
+/* .loginForm input {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: white;
+  padding: 3px 5px;
+  border: 1px solid #4b5563;
+  border-radius: 2px;
+}
+
+.loginForm input:hover {
+  border: 1px solid black;
+}
+
+.loginForm input:focus {
+  outline: 1px solid black;
+  outline-offset: -2px;
+} */
+
+/* .loginForm span {
+  color: red;
+} */
+
+.loginForm button {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #f3f4f6;
+  padding: 3px 5px;
+  border: 1px solid #6b7280;
+  border-radius: 3px;
+}
+
+.loginForm button:hover {
+  background-color: #e5e7eb;
+}
+
+.loginForm button:focus {
+  background-color: #f3f4f6;
+}
