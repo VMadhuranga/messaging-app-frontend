@@ -1,0 +1,50 @@
+.header {
+  padding: var(--default-padding);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: var(--default-gap);
+  flex-wrap: wrap;
+}
+
+.header nav {
+  margin-left: auto;
+}
+
+.header ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.header img {
+  width: 30px;
+  height: 30px;
+}
+
+.header a:hover,
+.active {
+  border-bottom: 2px solid black;
+}
+
+.main {
+  flex: 1;
+  padding: var(--default-padding);
+}
+
+.mainDefault {
+  margin-top: 75px;
+  text-align: center;
+}
+
+.footer {
+  padding: var(--default-padding);
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  .header nav {
+    margin-left: 0;
+  }
+}
