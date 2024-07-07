@@ -3,11 +3,13 @@ import App from "./components/app/App";
 import ErrorPage from "./components/error-page/ErrorPage";
 import SignUpPage from "./components/sign-up-page/SignUpPage";
 import LoginPage from "./components/login-page/LoginPage";
-import signUpAction from "./actions/sign-up-action";
-import loginAction from "./actions/login-action";
 import FriendListPage from "./components/friend-list-page/FriendListPage";
 import ChatPage from "./components/chat-page/ChatPage";
 import BrowsePeoplePage from "./components/browse-people-page/BrowsePeoplePage";
+import ProfilePage from "./components/profile-page/ProfilePage";
+import EditProfilePage from "./components/edit-profile-page/EditProfilePage";
+import signUpAction from "./actions/sign-up-action";
+import loginAction from "./actions/login-action";
 import friendListLoader from "./loaders/friend-list-loader";
 import refreshAction from "./actions/refresh-action";
 import messagesLoader from "./loaders/messages-loader";
@@ -15,10 +17,8 @@ import deleteFriendAction from "./actions/delete-friend-action";
 import sendMessageAction from "./actions/send-message-action";
 import peopleLoader from "./loaders/people-loader";
 import addFriendAction from "./actions/add-friend-action";
-import ProfilePage from "./components/profile-page/ProfilePage";
 import logoutAction from "./loaders/logout-loader";
 import deleteProfileLoader from "./loaders/delete-profile-loader";
-import EditProfilePage from "./components/edit-profile-page/EditProfilePage";
 import getUserLoader from "./loaders/user-loader";
 import updateFirstNameAction from "./actions/update-first-name-action";
 import updateLastNameAction from "./actions/update-last-name-action";
@@ -76,6 +76,12 @@ const routes = createBrowserRouter([
       {
         path: "/:user_id/profile",
         element: <ProfilePage />,
+        loader: async ({ params }) => {
+          await refreshAction(baseUrl);
+          const user = await getUserLoader(baseUrl, params.user_id);
+
+          return user;
+        },
       },
       {
         path: "/:user_id/profile/delete",
