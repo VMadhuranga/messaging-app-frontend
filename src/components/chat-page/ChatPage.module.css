@@ -62,6 +62,9 @@
 .userMsg,
 .friendMsg {
   max-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   padding: var(--default-padding);
   border-radius: 3px;
 }
@@ -74,4 +77,13 @@
 .friendMsg {
   background-color: #fecaca;
   margin-right: auto;
+}
+
+.userMsg span,
+.friendMsg span {
+  font-size: 0.8rem;
+}
+
+.userMsg span {
+  margin-left: auto;
 }
