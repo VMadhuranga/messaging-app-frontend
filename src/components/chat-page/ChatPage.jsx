@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   Link,
@@ -7,17 +7,41 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
+import socket from "../../socket";
 import sendSvg from "../../assets/icons/send.svg";
 import deleteSvg from "../../assets/icons/delete.svg";
 import goBackSvg from "../../assets/icons/go-back.svg";
 import styles from "./ChatPage.module.css";
 
 const ChatPage = () => {
-  const messages = useLoaderData();
+  const [messages, setMessages] = useState(useLoaderData());
   const params = useParams();
   const location = useLocation();
   const fetcher = useFetcher();
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    socket.auth = { userId: params.user_id };
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, [params.user_id]);
+
+  useEffect(() => {
+    function onMessage(data) {
+      setMessages([...messages, data]);
+    }
+    socket.on("message", onMessage);
+    return () => {
+      socket.off("message", onMessage);
+    };
+  }, [messages]);
+
+  function sendMessage() {
+    socket.emit("message", { content: message, to: params.friend_id });
+    setMessage("");
+  }
 
   function deleteFriend(e) {
     if (!confirm("Do you really want to delete the friend")) {
@@ -62,6 +86,7 @@ const ChatPage = () => {
                   }
                 >
                   {message.content}
+                  <span>{new Date(message.date).toLocaleString()}</span>
                 </li>
               ))}
           </>
@@ -71,9 +96,7 @@ const ChatPage = () => {
       </ul>
       <fetcher.Form
         method="post"
-        onSubmit={() => {
-          setMessage("");
-        }}
+        onSubmit={sendMessage}
         className={`defaultForm ${styles.sendMessageForm}`}
       >
         <textarea
