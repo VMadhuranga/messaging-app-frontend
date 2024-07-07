@@ -1,6 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
+  const user = useLoaderData();
   const params = useParams();
 
   function deleteProfile(e) {
@@ -11,7 +12,7 @@ const ProfilePage = () => {
 
   return (
     <section className="defaultSection">
-      <h2>User&apos;s name</h2>
+      <h2>{`${user.firstName} ${user.lastName}`}</h2>
       <div>
         <Link to={`/${params.user_id}/profile/edit`}>Edit profile</Link>
       </div>
