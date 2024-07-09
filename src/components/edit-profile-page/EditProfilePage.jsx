@@ -7,11 +7,29 @@ import {
 } from "react-router-dom";
 import goBackSvg from "../../assets/icons/go-back.svg";
 import styles from "./EditProfilePage.module.css";
+import { useState } from "react";
 
 const EditProfilePage = () => {
   const user = useLoaderData();
   const errors = useActionData();
   const params = useParams();
+  const [passwordObj, setPasswordObj] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+
+  function updatePassword(password) {
+    setPasswordObj({ ...passwordObj, ...password });
+  }
+
+  function resetPassword() {
+    setPasswordObj({
+      oldPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
+    });
+  }
 
   return (
     <section className={`defaultSection ${styles.editProfilePage}`}>
@@ -86,7 +104,7 @@ const EditProfilePage = () => {
         </div>
       </Form>
       <hr />
-      <Form method="patch" className="defaultForm">
+      <Form method="patch" className="defaultForm" onSubmit={resetPassword}>
         <div>
           <label htmlFor="old_password">Old password</label>
           <input
@@ -94,6 +112,8 @@ const EditProfilePage = () => {
             id="old_password"
             name="old_password"
             required
+            onChange={(e) => updatePassword({ oldPassword: e.target.value })}
+            value={passwordObj.oldPassword}
           />
           {errors &&
             errors
@@ -107,6 +127,8 @@ const EditProfilePage = () => {
             id="new_password"
             name="new_password"
             required
+            onChange={(e) => updatePassword({ newPassword: e.target.value })}
+            value={passwordObj.newPassword}
           />
           {errors &&
             errors
@@ -120,6 +142,10 @@ const EditProfilePage = () => {
             id="confirm_new_password"
             name="confirm_new_password"
             required
+            onChange={(e) =>
+              updatePassword({ confirmNewPassword: e.target.value })
+            }
+            value={passwordObj.confirmNewPassword}
           />
           {errors &&
             errors
