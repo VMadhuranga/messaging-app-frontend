@@ -116,6 +116,8 @@ const routes = createBrowserRouter([
             if (errorData) {
               return errorData;
             }
+
+            alert("Successfully updated first name");
           }
 
           if (Object.hasOwn(formData, "last_name")) {
@@ -128,6 +130,8 @@ const routes = createBrowserRouter([
             if (errorData) {
               return errorData;
             }
+
+            alert("Successfully updated last name");
           }
 
           if (Object.hasOwn(formData, "username")) {
@@ -140,6 +144,8 @@ const routes = createBrowserRouter([
             if (errorData) {
               return errorData;
             }
+
+            alert("Successfully updated username");
           }
 
           if (
@@ -156,6 +162,8 @@ const routes = createBrowserRouter([
             if (errorData) {
               return errorData;
             }
+
+            alert("Successfully updated password");
           }
 
           return null;
