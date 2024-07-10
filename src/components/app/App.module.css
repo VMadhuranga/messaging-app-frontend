@@ -38,6 +38,13 @@
   text-align: center;
 }
 
+.loading {
+  opacity: 0.5;
+  transition: opacity 200ms;
+  transition-delay: 200ms;
+  pointer-events: none;
+}
+
 .footer {
   padding: var(--default-padding);
   text-align: center;

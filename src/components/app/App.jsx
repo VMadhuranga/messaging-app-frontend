@@ -3,6 +3,7 @@ import {
   NavLink,
   Outlet,
   useLocation,
+  useNavigation,
   useParams,
 } from "react-router-dom";
 import friendsSvg from "../../assets/icons/friends.svg";
@@ -13,6 +14,7 @@ import styles from "./App.module.css";
 const App = () => {
   const { pathname } = useLocation();
   const param = useParams();
+  const navigation = useNavigation();
 
   return (
     <>
@@ -63,7 +65,9 @@ const App = () => {
           </nav>
         )}
       </header>
-      <main className={styles.main}>
+      <main
+        className={`${styles.main} ${navigation.state === "loading" || navigation.state === "submitting" ? styles.loading : ""}`}
+      >
         {pathname === "/" ? (
           <div className={styles.mainDefault}>
             <p>
