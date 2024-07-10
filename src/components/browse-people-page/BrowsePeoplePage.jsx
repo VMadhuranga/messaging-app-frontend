@@ -1,10 +1,9 @@
-import { useFetcher, useLoaderData } from "react-router-dom";
+import { Form, /* useFetcher */ useLoaderData } from "react-router-dom";
 import addFriendSvg from "../../assets/icons/add-friend.svg";
 import styles from "./BrowsePeoplePage.module.css";
 
 const BrowsePeoplePage = () => {
   const people = useLoaderData();
-  const fetcher = useFetcher();
 
   return (
     <section className={`defaultSection ${styles.browsePeoplePage}`}>
@@ -15,7 +14,7 @@ const BrowsePeoplePage = () => {
             <li key={person._id}>
               {person.firstName} {person.lastName}
               <span>@{person.userName}</span>
-              <fetcher.Form method="post" className="defaultForm">
+              <Form method="post" className="defaultForm">
                 <input type="hidden" name="friend_id" value={person._id} />
                 <button type="submit" title="Add to friends">
                   <img
@@ -24,7 +23,7 @@ const BrowsePeoplePage = () => {
                     title="Add to friends"
                   />
                 </button>
-              </fetcher.Form>
+              </Form>
             </li>
           ))}
         </ul>
