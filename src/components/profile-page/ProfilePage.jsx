@@ -22,7 +22,7 @@ const ProfilePage = () => {
         </Link>
       </div>
       <div>
-        <Link to={"/logout"}>Logout</Link>
+        <Link to={`/${params.user_id}/profile/logout`}>Logout</Link>
       </div>
     </section>
   );
