@@ -38,6 +38,11 @@ body {
   flex-direction: column;
 }
 
+.fallback {
+  margin-top: 20px;
+  text-align: center;
+}
+
 ul {
   list-style: none;
 }

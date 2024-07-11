@@ -6,6 +6,9 @@ import "./main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <RouterProvider
+      router={routes}
+      fallbackElement={<p className="fallback">Loading...</p>}
+    />
   </React.StrictMode>,
 );
