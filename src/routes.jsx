@@ -17,7 +17,7 @@ import deleteFriendAction from "./actions/delete-friend-action";
 import sendMessageAction from "./actions/send-message-action";
 import peopleLoader from "./loaders/people-loader";
 import addFriendAction from "./actions/add-friend-action";
-import logoutAction from "./loaders/logout-loader";
+import logoutLoader from "./loaders/logout-loader";
 import deleteProfileLoader from "./loaders/delete-profile-loader";
 import getUserLoader from "./loaders/user-loader";
 import updateFirstNameAction from "./actions/update-first-name-action";
@@ -31,6 +31,16 @@ const routes = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    loader: async ({ params }) => {
+      if (!params?.user_id) {
+        const userId = await refreshAction(baseUrl);
+        if (userId) {
+          return redirect(`/${userId}/friends`);
+        }
+      }
+
+      return null;
+    },
     children: [
       {
         path: "/login",
@@ -47,13 +57,6 @@ const routes = createBrowserRouter([
           }
 
           return redirect(`/${userId}/friends`);
-        },
-      },
-      {
-        path: "/logout",
-        loader: async () => {
-          await logoutAction(baseUrl);
-          return redirect("/login");
         },
       },
       {
@@ -81,6 +84,13 @@ const routes = createBrowserRouter([
           const user = await getUserLoader(baseUrl, params.user_id);
 
           return user;
+        },
+      },
+      {
+        path: "/:user_id/profile/logout",
+        loader: async () => {
+          await logoutLoader(baseUrl);
+          return redirect("/login");
         },
       },
       {
