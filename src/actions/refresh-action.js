@@ -2,17 +2,21 @@ import axios from "axios";
 import { decodeJwt } from "jose";
 
 export default async function refreshAction(baseUrl) {
-  const token = sessionStorage.getItem("accessToken");
+  try {
+    const token = sessionStorage.getItem("accessToken");
 
-  if (!token || decodeJwt(token).exp < Date.now()) {
-    const response = await axios.get(`${baseUrl}/refresh`, {
-      withCredentials: true,
-    });
+    if (!token || decodeJwt(token).exp < Date.now()) {
+      const response = await axios.get(`${baseUrl}/refresh`, {
+        withCredentials: true,
+      });
 
-    const { accessToken, userId } = response.data;
+      const { accessToken, userId } = response.data;
 
-    sessionStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("accessToken", accessToken);
 
-    return userId;
+      return userId;
+    }
+  } catch (error) {
+    return null;
   }
 }
