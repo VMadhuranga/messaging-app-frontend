@@ -41,7 +41,3 @@ This repository holds the front-end code for the [Messaging App](https://github.
    ➜  Network: use --host to expose
    ➜  press h + enter to show help
    ```
-
-## Acknowledgements
-
-This project is part of [The Odin Project](https://www.theodinproject.com/), a free online course to learn full-stack web development.
