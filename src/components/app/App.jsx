@@ -10,6 +10,7 @@ import friendsSvg from "../../assets/icons/friends.svg";
 import browsePeopleSvg from "../../assets/icons/browse-people.svg";
 import profileSettingsSvg from "../../assets/icons/profile-settings.svg";
 import styles from "./App.module.css";
+import { LoadingIndicator } from "../loading-indicator/LoadingIndicator";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -82,6 +83,8 @@ const App = () => {
         ) : (
           <Outlet />
         )}
+        {(navigation.state === "loading" ||
+          navigation.state === "submitting") && <LoadingIndicator />}
       </main>
       <footer className={styles.footer}>
         <p>VMadhuranga &copy; 2024</p>

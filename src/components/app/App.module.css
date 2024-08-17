@@ -31,6 +31,7 @@
 .main {
   flex: 1;
   padding: var(--default-padding);
+  transition: opacity 300ms ease-in-out;
 }
 
 .mainDefault {
@@ -40,8 +41,6 @@
 
 .loading {
   opacity: 0.5;
-  transition: opacity 200ms;
-  transition-delay: 200ms;
   pointer-events: none;
 }
 
